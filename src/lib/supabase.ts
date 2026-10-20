@@ -1,7 +1,9 @@
 import { createClient } from '@supabase/supabase-js'
 
-const url = import.meta.env.VITE_SUPABASE_URL as string
-const key = import.meta.env.VITE_SUPABASE_ANON_KEY as string
+// Public values (safe in the browser — access is enforced by row-level security).
+// Env vars override them; the fallbacks keep deploys working when they aren't set.
+const url = (import.meta.env.VITE_SUPABASE_URL as string) || 'https://cmsodxpkteszbqiwlrry.supabase.co'
+const key = (import.meta.env.VITE_SUPABASE_ANON_KEY as string) || 'sb_publishable_phs4j0se3SKJkPrUIZD-Kg_KPexY5lo'
 
 export const supabase = createClient(url, key, {
   auth: { persistSession: true, autoRefreshToken: true },
